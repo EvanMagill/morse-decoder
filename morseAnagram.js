@@ -1,13 +1,18 @@
 const morse = require('morse-decoder');
-var input = process.argv;
-var anagramSource = input.slice(2)[0];
+var input = process.argv.slice(2);
+var anagramSource = ''
+for(var args = 0; args < input.length; args ++) {
+	anagramSource += input[args] + ' ';
+}
 var sourceTranslation = morse.encode(anagramSource);
 var anagramBase = sourceTranslation.split('/').join('').split(' ').join('');
 var baseLength = anagramBase.length
-console.log(anagramSource);
-console.log(sourceTranslation);
-console.log(anagramBase);
 var perms = Math.pow(2, baseLength - 1);
+console.log('///////////\n' +
+						anagramSource + '\n' +
+						sourceTranslation + '\n' +
+						anagramBase  + '\n' +
+						perms + '\n///////////\n');
 console.log(perms);
 var anagrams = [];
 function insertSpace(startText, position) {
@@ -25,3 +30,8 @@ for(var perm = 0; perm < perms; perm ++) {
 	console.log(morse.decode(permOutput));
 	console.log('\n');
 }
+console.log('///////////\n' +
+						anagramSource + '\n' +
+						sourceTranslation + '\n' +
+						anagramBase  + '\n' +
+						perms + '\n///////////\n');
